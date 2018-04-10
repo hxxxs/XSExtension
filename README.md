@@ -22,7 +22,7 @@ pod 'XSExtension'
 
 ## Author
 
-git, huangxuesong@glzc.com
+Cedar, lychae@foxmail.com
 
 ## License
 
