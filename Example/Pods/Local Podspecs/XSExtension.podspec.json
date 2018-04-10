@@ -1,0 +1,22 @@
+{
+  "name": "XSExtension",
+  "version": "0.1.0",
+  "summary": "A short description of XSExtension.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/git/XSExtension",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "git": "huangxuesong@glzc.com"
+  },
+  "source": {
+    "git": "https://github.com/git/XSExtension.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "XSExtension/Classes/**/*"
+}

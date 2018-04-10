@@ -1,0 +1,6 @@
+framework module XSExtension {
+  umbrella header "XSExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}
