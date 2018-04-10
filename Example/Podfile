@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'XSExtension_Example' do
+  pod 'XSExtension', :path => '../'
+
+  target 'XSExtension_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
