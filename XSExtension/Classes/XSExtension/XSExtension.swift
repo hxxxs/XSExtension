@@ -523,6 +523,7 @@ extension UIButton {
     ///   - numberOfLines: 行数
     ///   - target: 监听者对象
     ///   - action: 方法
+    ///   - type: 按钮样式
     public convenience init(title: String? = nil,
                             titleColor: UIColor = .darkGray,
                             titleAttr: NSAttributedString? = nil,
@@ -532,9 +533,10 @@ extension UIButton {
                             textAlignment: NSTextAlignment = .left,
                             numberOfLines: Int = 1,
                             target: Any? = nil,
-                            action: Selector? = nil) {
+                            action: Selector? = nil,
+                            type: UIButtonType = .system) {
         
-        self.init(type: .system)
+        self.init(type: type)
         
         titleLabel?.configPropertys(font: font,
                                     textAlignment: textAlignment,
@@ -562,14 +564,16 @@ extension UIButton {
     ///   - fontSize: 标题文字大小，默认16
     ///   - color: 标题颜色，默认darkGray
     ///   - space: 图片和文字的间距大小，默认8
+    ///   - type: 按钮样式，默认system
     public convenience init(img: UIImage,
                             title: String,
                             wh: CGFloat = 30,
                             fontSize: CGFloat = 16,
                             color: UIColor = .darkGray,
-                            space: CGFloat = 8) {
+                            space: CGFloat = 8,
+                            type: UIButtonType = .system) {
         
-        self.init(type: .system)
+        self.init(type: type)
         
         let attr = NSAttributedString(img: img,
                                       title: title,
