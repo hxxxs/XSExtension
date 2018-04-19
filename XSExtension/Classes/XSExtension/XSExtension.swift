@@ -278,7 +278,18 @@ extension Bundle {
 
 // MARK: - UIKit Extension
 
+private var KEYREDSHAPELAYER = "KEYREDSHAPELAYER"
+
 extension UIView {
+    
+    private var redShapeLayer: CAShapeLayer? {
+        set {
+            objc_setAssociatedObject(self, &KEYREDSHAPELAYER, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        get {
+            return objc_getAssociatedObject(self, &KEYREDSHAPELAYER) as? CAShapeLayer
+        }
+    }
     
     public var x : CGFloat {
         set {
@@ -367,6 +378,32 @@ extension UIView {
         //  关闭绘图上下文
         UIGraphicsEndImageContext()
         return image
+    }
+    
+    /// 隐藏红点
+    public func hiddenRedDot() {
+        
+        if redShapeLayer == layer.sublayers?.last {
+            redShapeLayer!.removeFromSuperlayer()
+        }
+    }
+    
+    /// 展示红点
+    public func showRedDot() {
+        
+        if redShapeLayer == layer.sublayers?.last {
+            return
+        }
+        
+        redShapeLayer = CAShapeLayer()
+        redShapeLayer!.fillColor = UIColor.red.cgColor
+        layer.addSublayer(redShapeLayer!)
+        
+        let wh = min(min(width, height) / 2, 10)
+        let x = width - wh / 2
+        let y = -wh / 2
+        let path = UIBezierPath(ovalIn: CGRect(x: x, y: y, width: wh, height: wh))
+        redShapeLayer!.path = path.cgPath
     }
     
     /// 抖动动画
