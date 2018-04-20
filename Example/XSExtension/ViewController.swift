@@ -11,26 +11,29 @@ import XSExtension
 
 class ViewController: UIViewController {
     
-    lazy var button = UIButton(title: "hello world", target: self, action: #selector(ViewController.clickButton))
+    lazy var button = UIButton(title: "hello world", titleColor: UIColor.white, target: self, action: #selector(ViewController.clickButton))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         button.frame = CGRect(x: 100, y: 100, width: 100, height: 30)
+        button.backgroundColor = UIColor.brown
         view.addSubview(button);
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     @objc func clickButton() {
         button.showRedDot()
+        button.animationBeat()
+        XSStatusBarHUD.showSuccess()
+//        XSHUD.showError(text: "恭喜你注册成功")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         button.hiddenRedDot()
+        button.animationShaker()
+        XSStatusBarHUD.showError()
+        
+//        XSHUD.show(text: "恭喜你注册成功")
     }
 }
 
