@@ -24,16 +24,11 @@ class ViewController: UIViewController {
     @objc func clickButton() {
         button.showRedDot()
         button.animationBeat()
-        XSStatusBarHUD.showSuccess()
-//        XSHUD.showError(text: "恭喜你注册成功")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         button.hiddenRedDot()
         button.animationShaker()
-        XSStatusBarHUD.showError()
-        
-//        XSHUD.show(text: "恭喜你注册成功")
     }
 }
 

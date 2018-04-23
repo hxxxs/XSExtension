@@ -13,6 +13,5 @@ Pod::Spec.new do |s|
 
   s.source_files = 'XSExtension/Classes/**/*'
   s.swift_version = '4.0'
-  s.resources    = 'XSExtension/Assets/XSExtension.bundle'
 
 end
