@@ -1,6 +1,6 @@
 {
   "name": "XSExtension",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "summary": "Swift 方法拓展",
   "homepage": "https://github.com/hxxxs/XSExtension",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/hxxxs/XSExtension.git",
-    "tag": "0.1.3"
+    "tag": "0.1.4"
   },
   "platforms": {
     "ios": "8.0"

@@ -1,5 +1,5 @@
 PODS:
-  - XSExtension (0.1.3)
+  - XSExtension (0.1.4)
 
 DEPENDENCIES:
   - XSExtension (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  XSExtension: 3178ff595327fd9b46f0463098c5e7f10af340c3
+  XSExtension: 7faa26e3ae33bd89a5b5dddab59103345f8a817d
 
 PODFILE CHECKSUM: 50a8363f563a4831e02015501f7abd59adf7e22e
 

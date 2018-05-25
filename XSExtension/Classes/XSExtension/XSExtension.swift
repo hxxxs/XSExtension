@@ -650,3 +650,51 @@ extension UIColor {
         self.init(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: 1)
     }
 }
+
+private var KEYPlACEHOLDERLABEL = "KEYPlACEHOLDERLABEL"
+
+extension UITextView {
+    
+    open override func removeFromSuperview() {
+        super.removeFromSuperview()
+        
+        NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidChange, object: self)
+    }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if placeholderLabel != nil {
+            let x = textContainerInset.left + textContainer.lineFragmentPadding + layer.borderWidth;
+            let y = textContainerInset.top + layer.borderWidth
+            let w = width - x - textContainerInset.right - 2 * layer.borderWidth
+            let h = placeholderLabel!.sizeThatFits(CGSize(width: w, height: 0)).height
+            placeholderLabel!.frame = CGRect(x: x, y: y, width: w, height: h)
+        }
+    }
+    
+    /// 占位文本框
+    private var placeholderLabel: UILabel? {
+        set {
+            objc_setAssociatedObject(self, &KEYPlACEHOLDERLABEL, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            NotificationCenter.default.addObserver(self, selector: #selector(updatePlaceholder), name: .UITextViewTextDidChange, object: self)
+        }
+        get {
+            return objc_getAssociatedObject(self, &KEYPlACEHOLDERLABEL) as? UILabel
+        }
+    }
+    
+    public var placeholder: String {
+        set {
+            placeholderLabel = UILabel(text: newValue, font: self.font ?? UIFont.systemFont(ofSize: 15), textColor: UIColor.lightGray, textAlignment: self.textAlignment, numberOfLines: 0)
+            insertSubview(placeholderLabel!, at: 0)
+        }
+        get {
+            return placeholderLabel?.text ?? ""
+        }
+    }
+    
+    @objc private func updatePlaceholder() {
+        placeholderLabel!.isHidden = text.count > 0
+    }
+}

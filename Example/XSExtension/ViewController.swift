@@ -10,6 +10,7 @@ import UIKit
 import XSExtension
 
 class ViewController: UIViewController {
+    @IBOutlet weak var textView: UITextView!
     
     lazy var button = UIButton(title: "hello world", titleColor: UIColor.white, target: self, action: #selector(ViewController.clickButton))
     
@@ -19,6 +20,9 @@ class ViewController: UIViewController {
         button.frame = CGRect(x: 100, y: 100, width: 100, height: 30)
         button.backgroundColor = UIColor.brown
         view.addSubview(button);
+        
+        textView.placeholder = "占位占位"
+        
     }
     
     @objc func clickButton() {
