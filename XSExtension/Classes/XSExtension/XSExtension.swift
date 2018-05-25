@@ -724,6 +724,7 @@ extension UITextView {
         set {
             placeholderLabel = UILabel(text: newValue, font: self.font ?? UIFont.systemFont(ofSize: 15), textColor: UIColor.lightGray, textAlignment: self.textAlignment, numberOfLines: 0)
             insertSubview(placeholderLabel!, at: 0)
+            updatePlaceholder()
         }
         get {
             return placeholderLabel?.text ?? ""
