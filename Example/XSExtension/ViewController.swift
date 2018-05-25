@@ -19,10 +19,11 @@ class ViewController: UIViewController {
         
         button.frame = CGRect(x: 100, y: 100, width: 100, height: 30)
         button.backgroundColor = UIColor.brown
+        button.borderWidth = 2
+        button.borderColor = UIColor.yellow
         view.addSubview(button);
         
         textView.placeholder = "占位占位"
-        
     }
     
     @objc func clickButton() {

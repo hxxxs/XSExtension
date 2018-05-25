@@ -282,6 +282,42 @@ private var KEYREDSHAPELAYER = "KEYREDSHAPELAYER"
 
 extension UIView {
     
+    @IBInspectable public var masksToBounds: Bool {
+        set {
+            layer.masksToBounds = newValue
+        }
+        get {
+            return layer.masksToBounds
+        }
+    }
+    
+    @IBInspectable public var cornerRadius: CGFloat {
+        set {
+            layer.cornerRadius = newValue
+        }
+        get {
+            return layer.cornerRadius
+        }
+    }
+    
+    @IBInspectable public var borderWidth: CGFloat {
+        set {
+            layer.borderWidth = newValue
+        }
+        get {
+            return layer.borderWidth
+        }
+    }
+    
+    @IBInspectable public var borderColor: UIColor? {
+        set {
+            layer.borderColor = newValue?.cgColor
+        }
+        get {
+            return UIColor(cgColor: layer.borderColor!)
+        }
+    }
+    
     private var redShapeLayer: CAShapeLayer? {
         set {
             objc_setAssociatedObject(self, &KEYREDSHAPELAYER, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
@@ -696,5 +732,18 @@ extension UITextView {
     
     @objc private func updatePlaceholder() {
         placeholderLabel!.isHidden = text.count > 0
+    }
+}
+
+//  MARK: - QuartzCore
+
+extension CALayer {
+    @IBInspectable var borderColorFromUIColor: UIColor {
+        set {
+            borderColor = newValue.cgColor
+        }
+        get {
+            return UIColor(cgColor: borderColor!)
+        }
     }
 }
