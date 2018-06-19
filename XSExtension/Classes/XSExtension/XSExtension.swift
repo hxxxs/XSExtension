@@ -278,8 +278,6 @@ extension Bundle {
 
 // MARK: - UIKit Extension
 
-private var KEYREDSHAPELAYER = "KEYREDSHAPELAYER"
-
 extension UIView {
     
     @IBInspectable public var masksToBounds: Bool {
@@ -315,15 +313,6 @@ extension UIView {
         }
         get {
             return UIColor(cgColor: layer.borderColor!)
-        }
-    }
-    
-    private var redShapeLayer: CAShapeLayer? {
-        set {
-            objc_setAssociatedObject(self, &KEYREDSHAPELAYER, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-        get {
-            return objc_getAssociatedObject(self, &KEYREDSHAPELAYER) as? CAShapeLayer
         }
     }
     
@@ -418,28 +407,22 @@ extension UIView {
     
     /// 隐藏红点
     public func hiddenRedDot() {
-        
-        if redShapeLayer == layer.sublayers?.last {
-            redShapeLayer!.removeFromSuperlayer()
+        for v in subviews {
+            if v.tag == 201806191800 {
+                v.removeFromSuperview()
+            }
         }
     }
     
     /// 展示红点
-    public func showRedDot() {
+    public func showRedDot(wh: CGFloat = 8) {
+        hiddenRedDot()
         
-        if redShapeLayer == layer.sublayers?.last {
-            return
-        }
-        
-        redShapeLayer = CAShapeLayer()
-        redShapeLayer!.fillColor = UIColor.red.cgColor
-        layer.addSublayer(redShapeLayer!)
-        
-        let wh = min(min(width, height) / 2, 10)
-        let x = width - wh / 2
-        let y = -wh / 2
-        let path = UIBezierPath(ovalIn: CGRect(x: x, y: y, width: wh, height: wh))
-        redShapeLayer!.path = path.cgPath
+        let redView = UIView(frame: CGRect(x: width, y: -wh / 2, width: wh, height: wh))
+        redView.backgroundColor = UIColor.red
+        redView.cornerRadius = wh / 2
+        redView.tag = 201806191800
+        addSubview(redView)
     }
     
     /// 抖动动画

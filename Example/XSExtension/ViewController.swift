@@ -27,12 +27,12 @@ class ViewController: UIViewController {
     }
     
     @objc func clickButton() {
-        button.showRedDot()
+        button.titleLabel?.showRedDot()
         button.animationBeat()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        button.hiddenRedDot()
+        button.titleLabel?.hiddenRedDot()
         button.animationShaker()
     }
 }
