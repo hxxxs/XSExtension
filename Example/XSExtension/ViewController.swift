@@ -29,6 +29,8 @@ class ViewController: UIViewController {
     @objc func clickButton() {
         button.titleLabel?.showRedDot()
         button.animationBeat()
+        XSLog(String.dateConvertString(date: Date(year: 2018, month: 6)))
+        XSLog(String.timestampConvertString(timeInterval: 1529401774))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

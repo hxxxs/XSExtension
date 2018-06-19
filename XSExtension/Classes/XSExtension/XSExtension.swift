@@ -122,6 +122,28 @@ extension Date {
 
 extension String {
     
+    /// 时间戳转字符串
+    ///
+    /// - Parameters:
+    ///   - dateFormat: 时间格式
+    ///   - timeInterval: 时间戳（单位s）
+    public static func timestampConvertString(dateFormat: String = "yyyy-MM-dd HH:mm", timeInterval: TimeInterval) -> String {
+        let date = Date(timeIntervalSince1970: timeInterval)
+        return dateConvertString(dateFormat: dateFormat, date: date)
+    }
+    
+    /// 日期转字符串
+    ///
+    /// - Parameters:
+    ///   - dateFormat: 时间格式
+    ///   - date: 日期
+    public static func dateConvertString(dateFormat: String = "yyyy-MM-dd HH:mm", date: Date) -> String {
+        let fmt = DateFormatter()
+        fmt.locale = Locale(identifier: "zh_CN")
+        fmt.dateFormat = dateFormat
+        return fmt.string(from: date)
+    }
+    
     /// 加密手机号
     public var encryptionPhone: String {
         
@@ -408,7 +430,7 @@ extension UIView {
     /// 隐藏红点
     public func hiddenRedDot() {
         for v in subviews {
-            if v.tag == 201806191800 {
+            if v.tag == 20180619 {
                 v.removeFromSuperview()
             }
         }
@@ -421,7 +443,7 @@ extension UIView {
         let redView = UIView(frame: CGRect(x: width, y: -wh / 2, width: wh, height: wh))
         redView.backgroundColor = UIColor.red
         redView.cornerRadius = wh / 2
-        redView.tag = 201806191800
+        redView.tag = 20180619
         addSubview(redView)
     }
     
