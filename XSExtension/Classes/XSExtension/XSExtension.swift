@@ -438,9 +438,14 @@ extension UIView {
     
     /// 展示红点
     public func showRedDot(wh: CGFloat = 8) {
+        self .showRedDot(wh: wh, center: CGPoint(x: width, y: -wh / 2))
+    }
+    
+    /// 展示红点
+    public func showRedDot(wh: CGFloat = 8, center: CGPoint) {
         hiddenRedDot()
         
-        let redView = UIView(frame: CGRect(x: width, y: -wh / 2, width: wh, height: wh))
+        let redView = UIView(frame: CGRect(x: center.x, y: center.y, width: wh, height: wh))
         redView.backgroundColor = UIColor.red
         redView.cornerRadius = wh / 2
         redView.tag = 20180619
