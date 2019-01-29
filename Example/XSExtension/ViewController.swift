@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         view.addSubview(button);
         
         textView.placeholder = "占位占位"
+        
     }
     
     @objc func clickButton() {

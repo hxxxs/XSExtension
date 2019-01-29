@@ -265,13 +265,13 @@ extension NSAttributedString {
         // 间距属性文本
         let spaceAttr = NSAttributedString(
             string: "\n\n",
-            attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: space)]
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: space)]
         )
         
         // 标题属性文本
         let titleAttr = NSAttributedString(
             string: title,
-            attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: fontSize),
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize),
                          .foregroundColor: color]
         )
         
@@ -459,7 +459,7 @@ extension UIView {
         kfanimation.duration = 0.4
         kfanimation.values = [cTx, cTx+10, cTx-8, cTx+8, cTx-5, cTx+5, cTx]
         kfanimation.keyTimes = [(0), (0.225), (0.425), (0.525), (0.750), (0.875), (1)]
-        kfanimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        kfanimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         layer.add(kfanimation, forKey: "kShakerAnimationKey")
     }
     
@@ -468,7 +468,7 @@ extension UIView {
         transform = CGAffineTransform()
         UIView.animateKeyframes(withDuration: 0.3,
                                 delay: 0,
-                                options: UIViewKeyframeAnimationOptions(rawValue: 0),
+                                options: UIView.KeyframeAnimationOptions(rawValue: 0),
                                 animations: {
                                     UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1 / 3.0, animations: {
                                         self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
@@ -617,7 +617,7 @@ extension UIButton {
                             numberOfLines: Int = 1,
                             target: Any? = nil,
                             action: Selector? = nil,
-                            type: UIButtonType = .system) {
+                            type: UIButton.ButtonType = .system) {
         
         self.init(type: type)
         
@@ -654,7 +654,7 @@ extension UIButton {
                             fontSize: CGFloat = 16,
                             color: UIColor = .darkGray,
                             space: CGFloat = 8,
-                            type: UIButtonType = .system) {
+                            type: UIButton.ButtonType = .system) {
         
         self.init(type: type)
         
@@ -704,7 +704,7 @@ extension UITextView {
     open override func removeFromSuperview() {
         super.removeFromSuperview()
         
-        NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidChange, object: self)
+        NotificationCenter.default.removeObserver(self, name: UITextView.textDidChangeNotification, object: self)
     }
     
     open override func layoutSubviews() {
@@ -723,7 +723,7 @@ extension UITextView {
     private var placeholderLabel: UILabel? {
         set {
             objc_setAssociatedObject(self, &KEYPlACEHOLDERLABEL, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            NotificationCenter.default.addObserver(self, selector: #selector(updatePlaceholder), name: .UITextViewTextDidChange, object: self)
+            NotificationCenter.default.addObserver(self, selector: #selector(updatePlaceholder), name: UITextView.textDidChangeNotification, object: self)
         }
         get {
             return objc_getAssociatedObject(self, &KEYPlACEHOLDERLABEL) as? UILabel
