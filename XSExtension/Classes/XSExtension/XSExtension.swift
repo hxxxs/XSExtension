@@ -8,6 +8,16 @@
 
 import UIKit
 
+//  准备数据源
+fileprivate let Zodiacs = ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"]
+fileprivate let HeavenlyStems = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
+fileprivate let EarthlyBranches = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
+fileprivate let Months = ["正月", "二月", "三月", "四月", "五月", "六月",
+              "七月", "八月", "九月", "十月", "冬月", "腊月"]
+fileprivate let Days = ["初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九", "初十",
+            "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十",
+            "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七", "廿八", "廿九", "三十"]
+
 // MARK: - Foundation Extension
 
 extension Date {
@@ -29,22 +39,11 @@ extension Date {
     
     /// 农历
     public var lunar: [String: String] {
-        
         let cal = Calendar(identifier: .chinese)
         let year = cal.component(.year, from: self)
         let month = cal.component(.month, from: self)
         let day = cal.component(.day, from: self)
-        
-        //  准备数据源
-        let Zodiacs = ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"]
-        let HeavenlyStems = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
-        let EarthlyBranches = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
-        let Months = ["正月", "二月", "三月", "四月", "五月", "六月",
-                      "七月", "八月", "九月", "十月", "冬月", "腊月"]
-        let Days = ["初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九", "初十",
-                    "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十",
-                    "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七", "廿八", "廿九", "三十"]
-        
+  
         //  天干
         let heavenlyStemIndex = (year - 1) % HeavenlyStems.count
         let heavenlyStem = HeavenlyStems[heavenlyStemIndex]
@@ -146,8 +145,10 @@ extension String {
     
     /// 加密手机号
     public var encryptionPhone: String {
-        
-        assert(isPhoneNumber, "无效的手机号")
+        if isPhoneNumber {
+            debugPrint("无效的手机号")
+            return self
+        }
         
         let range = Range(NSRange(location: 3, length: 4), in: self)
         return replacingCharacters(in: range!, with: "****")
@@ -295,12 +296,31 @@ extension Bundle {
     public var currentVersion: String {
         return infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }
-    
+
 }
 
 // MARK: - UIKit Extension
 
+extension UIViewController {
+    /// 通过storyboard初始化视图控制器
+    public static func vcFromStroyboard(
+        name: String? = nil,
+        identifier: String? = nil,
+        bundle: Bundle? = nil) -> UIViewController {
+        let sb = UIStoryboard(name: name ?? "\(classForCoder())", bundle: bundle)
+        return sb.instantiateViewController(withIdentifier: identifier ?? "\(classForCoder())")
+    }
+}
+
 extension UIView {
+    
+    /// 通过xib初始化视图
+    public static func viewFromNib(nibName: String? = nil, bundle: Bundle? = nil) -> UIView {
+        let nib = UINib(nibName: nibName ?? "\(classForCoder())", bundle: bundle)
+        return nib.instantiate(withOwner: nil, options: nil).last as! UIView
+    }
+    
+    // MARK: - Properties
     
     @IBInspectable public var masksToBounds: Bool {
         set {
@@ -412,16 +432,12 @@ extension UIView {
     
     /// 视图快照
     public var snapshotImage: UIImage {
-        
         //  开启绘图上下文
         UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0)
-        
         //  绘制
         drawHierarchy(in: bounds, afterScreenUpdates: true)
-        
         //  获取结果
         let image = UIGraphicsGetImageFromCurrentImageContext()!
-        
         //  关闭绘图上下文
         UIGraphicsEndImageContext()
         return image
@@ -438,13 +454,12 @@ extension UIView {
     
     /// 展示红点
     public func showRedDot(wh: CGFloat = 8) {
-        self .showRedDot(wh: wh, center: CGPoint(x: width, y: -wh / 2))
+        showRedDot(wh: wh, center: CGPoint(x: width, y: -wh / 2))
     }
     
     /// 展示红点
     public func showRedDot(wh: CGFloat = 8, center: CGPoint) {
         hiddenRedDot()
-        
         let redView = UIView(frame: CGRect(x: center.x, y: center.y, width: wh, height: wh))
         redView.backgroundColor = UIColor.red
         redView.cornerRadius = wh / 2
@@ -469,24 +484,23 @@ extension UIView {
         UIView.animateKeyframes(withDuration: 0.3,
                                 delay: 0,
                                 options: UIView.KeyframeAnimationOptions(rawValue: 0),
-                                animations: {
-                                    UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1 / 3.0, animations: {
-                                        self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-                                    })
-                                    UIView.addKeyframe(withRelativeStartTime: 1 / 3.0,
-                                                       relativeDuration: 1 / 3.0,
-                                                       animations: {
-                                                        self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                                    })
-                                    UIView.addKeyframe(withRelativeStartTime: 2 / 3.0,
-                                                       relativeDuration: 1 / 3.0,
-                                                       animations: {
-                                                        self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                                    })
-        },
-                                completion: nil)
+                                animations:
+            {
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1 / 3.0, animations: {
+                    self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                })
+                UIView.addKeyframe(withRelativeStartTime: 1 / 3.0,
+                                   relativeDuration: 1 / 3.0,
+                                   animations: {
+                                    self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                })
+                UIView.addKeyframe(withRelativeStartTime: 2 / 3.0,
+                                   relativeDuration: 1 / 3.0,
+                                   animations: {
+                                    self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                })
+        }, completion: nil)
     }
-    
 }
 
 extension UILabel {
@@ -504,7 +518,7 @@ extension UILabel {
                             numberOfLines: Int = 1) {
         self.init()
         
-        configPropertys(font: font,
+        configProperties(font: font,
                         textColor: textColor,
                         textAlignment: textAlignment,
                         numberOfLines: numberOfLines)
@@ -520,7 +534,7 @@ extension UILabel {
     ///   - textColor: 文字颜色
     ///   - textAlignment: 文字对齐方式
     ///   - numberOfLines: 行数
-    public func configPropertys(font: UIFont = .systemFont(ofSize: 16),
+    public func configProperties(font: UIFont = .systemFont(ofSize: 16),
                                 textColor: UIColor = .darkGray,
                                 textAlignment: NSTextAlignment = .left,
                                 numberOfLines: Int = 1) {
@@ -535,10 +549,10 @@ extension UIImage {
     
     /// 圆形裁剪
     public var circular: UIImage {
-        
+    
         //  获取最短边长
         let shotest = min(size.width, size.height)
-        
+
         //  设置绘图区间
         let rect = CGRect(x: 0, y: 0, width: shotest, height: shotest)
         
@@ -567,24 +581,19 @@ extension UIImage {
     ///
     /// - Parameter color: 颜色
     /// - Returns: 图片
-    open class func create(color: UIColor,
+    public static func create(color: UIColor,
                            size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
         
         //  设置绘图区间
         let rect = CGRect(origin: .zero, size: size)
-        
         //  开启绘图上下文
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
-        
         //  设置填充颜色
         color.setFill()
-        
         //  填充区域
         UIRectFill(rect)
-        
         //  获取结果
         let image = UIGraphicsGetImageFromCurrentImageContext()!
-        
         //  关闭绘图上下文
         UIGraphicsEndImageContext()
         return image
@@ -621,7 +630,7 @@ extension UIButton {
         
         self.init(type: type)
         
-        titleLabel?.configPropertys(font: font,
+        titleLabel?.configProperties(font: font,
                                     textAlignment: textAlignment,
                                     numberOfLines: numberOfLines)
         
@@ -675,7 +684,7 @@ extension UIButton {
 extension UIColor {
     
     /// 随机色
-    open class var random: UIColor {
+    public static var random: UIColor {
         
         let r = CGFloat(arc4random() % 256) / 255.0
         let g = CGFloat(arc4random() % 256) / 255.0
