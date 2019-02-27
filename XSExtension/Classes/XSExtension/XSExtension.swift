@@ -547,6 +547,45 @@ extension UILabel {
 
 extension UIImage {
     
+    /// 裁剪成带圆弧的图片
+    ///
+    /// - Parameters:
+    ///   - cornerRadius: 圆弧半径
+    ///   - imageSize: 图片大小，默认为当前图片大小
+    ///   - lineWidth: 边框宽度，默认为0
+    ///   - lineColor: 边框颜色，默认为白色
+    ///   - backColor: 背景颜色，默认白色
+    public func ovalImage(cornerRadius: CGFloat, imageSize: CGSize? = nil, lineWidth: CGFloat = 0, lineColor: UIColor = .white, backColor: UIColor = .white) -> UIImage {
+        //  定义绘制空间
+        let rect: CGRect
+        if imageSize != nil {
+            rect = CGRect(x: 0, y: 0, width: imageSize!.width, height: imageSize!.width)
+        } else {
+            rect = CGRect(x: 0, y: 0, width: size.width, height: size.width)
+        }
+        
+        //  开启上下文绘制底层颜色
+        UIGraphicsBeginImageContextWithOptions(rect.size, true, 0)
+        backColor.setFill()
+        UIRectFill(rect)
+        
+        //  裁剪图片
+        let patch = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
+        patch.addClip()
+        draw(in: rect)
+        
+        //  边框
+        let ovalPath = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
+        ovalPath.lineWidth = lineWidth
+        lineColor.setStroke()
+        ovalPath.stroke()
+        
+        //  获取结果关闭上下文
+        let result = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return result
+    }
+    
     /// 圆形裁剪
     public var circular: UIImage {
     
