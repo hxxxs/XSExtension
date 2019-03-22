@@ -301,6 +301,25 @@ extension Bundle {
 
 // MARK: - UIKit Extension
 
+extension UITableViewCell {
+    /// 注册并返回一个可重用单元格
+    ///
+    /// - Parameters:
+    ///   - tableView: 注册单元格的tableview
+    ///   - style: 单元格样式，默认样式default
+    ///   - reuseIdentifier: 注册可重用单元格标识符
+    public static func cell(with tableView: UITableView,
+                            style: UITableViewCell.CellStyle = .default,
+                            reuseIdentifier: String? = nil) -> UITableViewCell {
+        let identifier = reuseIdentifier ?? "\(classForCoder())Indentifier"
+        var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+        if cell == nil {
+            cell = UITableViewCell(style: style, reuseIdentifier: identifier)
+        }
+        return cell!
+    }
+}
+
 extension UIViewController {
     /// 通过storyboard初始化视图控制器
     public static func vcFromStroyboard(
