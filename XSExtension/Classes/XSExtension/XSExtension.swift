@@ -299,6 +299,30 @@ extension Bundle {
 
 }
 
+extension Int {
+    /// 以 iPhone 6 的屏幕为基准计算水平方向值
+    public var adaptWidth: CGFloat {
+        return XSScaleX(CGFloat(self))
+    }
+    
+    /// 以 iPhone 6 的屏幕为基准计算垂直方向值
+    public var adaptHeight: CGFloat {
+        return XSScaleY(CGFloat(self))
+    }
+}
+
+extension Float {
+    /// 以 iPhone 6 的屏幕为基准计算水平方向值
+    public var adaptWidth: CGFloat {
+        return XSScaleX(CGFloat(self))
+    }
+    
+    /// 以 iPhone 6 的屏幕为基准计算垂直方向值
+    public var adaptHeight: CGFloat {
+        return XSScaleY(CGFloat(self))
+    }
+}
+
 // MARK: - UIKit Extension
 
 extension CGFloat {
