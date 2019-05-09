@@ -302,24 +302,36 @@ extension Bundle {
 extension Int {
     /// 以 iPhone 6 的屏幕为基准计算水平方向值
     public var adaptWidth: CGFloat {
-        return XSScaleX(CGFloat(self))
+        return CGFloat(self).adaptWidth
     }
     
     /// 以 iPhone 6 的屏幕为基准计算垂直方向值
     public var adaptHeight: CGFloat {
-        return XSScaleY(CGFloat(self))
+        return CGFloat(self).adaptHeight
+    }
+}
+
+extension Double {
+    /// 以 iPhone 6 的屏幕为基准计算水平方向值
+    public var adaptWidth: CGFloat {
+        return CGFloat(self).adaptWidth
+    }
+    
+    /// 以 iPhone 6 的屏幕为基准计算垂直方向值
+    public var adaptHeight: CGFloat {
+        return CGFloat(self).adaptHeight
     }
 }
 
 extension Float {
     /// 以 iPhone 6 的屏幕为基准计算水平方向值
     public var adaptWidth: CGFloat {
-        return XSScaleX(CGFloat(self))
+        return CGFloat(self).adaptWidth
     }
     
     /// 以 iPhone 6 的屏幕为基准计算垂直方向值
     public var adaptHeight: CGFloat {
-        return XSScaleY(CGFloat(self))
+        return CGFloat(self).adaptHeight
     }
 }
 
@@ -329,12 +341,14 @@ extension CGFloat {
     
     /// 以 iPhone 6 的屏幕为基准计算水平方向值
     public var adaptWidth: CGFloat {
-        return XSScaleX(self)
+        let w = UIScreen.main.bounds.width
+        return self * w / 375.0
     }
     
     /// 以 iPhone 6 的屏幕为基准计算垂直方向值
     public var adaptHeight: CGFloat {
-        return XSScaleY(self)
+        let h = UIScreen.main.bounds.height
+        return self * h / 667.0
     }
 }
 

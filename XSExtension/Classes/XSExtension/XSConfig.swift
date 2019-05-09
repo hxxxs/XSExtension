@@ -41,11 +41,11 @@ public func XSScaleY(_ num: CGFloat) -> CGFloat {
 
 /// 角度转弧度
 public func degreesToRadians(_ x : Float) -> Float {
-    return (x * Float(Double.pi) / 180.0)
+    return (x * Float.pi / 180.0)
 }
 
 /// 弧度转角度
 public func radiansToDegrees(_ x : Float) -> Float {
-    return (x * 180.0 / Float(Double.pi))
+    return (x * 180.0 / Float.pi)
 }
 
