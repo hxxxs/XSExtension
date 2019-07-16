@@ -145,7 +145,7 @@ extension String {
     
     /// 加密手机号
     public var encryptionPhone: String {
-        if isPhoneNumber {
+        if !isPhoneNumber {
             debugPrint("无效的手机号")
             return self
         }
