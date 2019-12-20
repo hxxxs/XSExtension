@@ -372,11 +372,37 @@ extension UITableViewCell {
 }
 
 extension UIViewController {
+    
+    /// alert
+    /// - Parameters:
+    ///   - message: 消息
+    ///   - title: 标题
+    ///   - cannelTitle: 取消按钮名称
+    ///   - cannelHandler: 取消按钮回调
+    ///   - confirmTitle: 确认按钮
+    ///   - confirmHandler: 确认按钮回调
+    ///   - completion: 完成回调
+    public func showAlertVC(message: String?,
+                            title: String?,
+                            cannelTitle: String?,
+                            cannelHandler: ((UIAlertAction) -> Void)?,
+                            confirmTitle: String?,
+                            confirmHandler: ((UIAlertAction) -> Void)?,
+                            completion: (() -> Void)?) {
+        let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        if cannelTitle != nil {
+            vc.addAction(UIAlertAction(title: cannelTitle, style: .cancel, handler: cannelHandler))
+        }
+        if confirmTitle != nil {
+            vc.addAction(UIAlertAction(title: confirmTitle, style: .default, handler: confirmHandler))
+        }
+        present(vc, animated: true, completion: completion)
+    }
+    
     /// 通过storyboard初始化视图控制器
-    public static func vcFromStroyboard(
-        name: String? = nil,
-        identifier: String? = nil,
-        bundle: Bundle? = nil) -> UIViewController {
+    public static func vcFromStroyboard(name: String? = nil,
+                                        identifier: String? = nil,
+                                        bundle: Bundle? = nil) -> UIViewController {
         let sb = UIStoryboard(name: name ?? "\(classForCoder())", bundle: bundle)
         return sb.instantiateViewController(withIdentifier: identifier ?? "\(classForCoder())")
     }
@@ -385,7 +411,8 @@ extension UIViewController {
 extension UIView {
     
     /// 通过xib初始化视图
-    public static func viewFromNib(nibName: String? = nil, bundle: Bundle? = nil) -> UIView {
+    public static func viewFromNib(nibName: String? = nil,
+                                   bundle: Bundle? = nil) -> UIView {
         let nib = UINib(nibName: nibName ?? "\(classForCoder())", bundle: bundle)
         return nib.instantiate(withOwner: nil, options: nil).last as! UIView
     }
@@ -805,13 +832,13 @@ extension UIColor {
     /// 使用 16 进制数字创建颜色
     ///
     /// - Parameter hex: 16 进制无符号32位整数
-    public convenience init(hex: UInt32) {
+    public convenience init(hex: UInt32, alpha: CGFloat = 1.0) {
         
         let r = CGFloat((hex & 0xff0000) >> 16)
         let g = CGFloat((hex & 0x00ff00) >> 8)
         let b = CGFloat(hex & 0x0000ff)
         
-        self.init(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: 1)
+        self.init(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: alpha)
     }
 }
 
