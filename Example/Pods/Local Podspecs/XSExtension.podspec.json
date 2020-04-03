@@ -2,7 +2,7 @@
   "name": "XSExtension",
   "version": "2.0.0",
   "summary": "Swift 方法拓展",
-  "homepage": "https://github.com/hxxxs/XSExtension",
+  "homepage": "https://github.com/hxxxs",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -17,5 +17,7 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "XSExtension/Classes/**/*"
+  "source_files": "XSExtension/Classes/**/*",
+  "swift_versions": "5.0",
+  "swift_version": "5.0"
 }

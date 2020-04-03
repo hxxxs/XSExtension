@@ -852,20 +852,8 @@ extension UITextView {
         NotificationCenter.default.removeObserver(self, name: UITextView.textDidChangeNotification, object: self)
     }
     
-    open override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if placeholderLabel != nil {
-            let x = textContainerInset.left + textContainer.lineFragmentPadding + layer.borderWidth;
-            let y = textContainerInset.top + layer.borderWidth
-            let w = width - x - textContainerInset.right - 2 * layer.borderWidth
-            let h = placeholderLabel!.sizeThatFits(CGSize(width: w, height: 0)).height
-            placeholderLabel!.frame = CGRect(x: x, y: y, width: w, height: h)
-        }
-    }
-    
     /// 占位文本框
-    private var placeholderLabel: UILabel? {
+    public var placeholderLabel: UILabel? {
         set {
             objc_setAssociatedObject(self, &KEYPlACEHOLDERLABEL, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             NotificationCenter.default.addObserver(self, selector: #selector(updatePlaceholder), name: UITextView.textDidChangeNotification, object: self)
@@ -879,6 +867,13 @@ extension UITextView {
         set {
             placeholderLabel = UILabel(text: newValue, font: self.font ?? UIFont.systemFont(ofSize: 15), textColor: UIColor.lightGray, textAlignment: self.textAlignment, numberOfLines: 0)
             insertSubview(placeholderLabel!, at: 0)
+            
+            let x = textContainerInset.left + textContainer.lineFragmentPadding + layer.borderWidth;
+            let y = textContainerInset.top + layer.borderWidth
+            let w = width - x - textContainerInset.right - 2 * layer.borderWidth
+            let h = placeholderLabel!.sizeThatFits(CGSize(width: w, height: 0)).height
+            placeholderLabel!.frame = CGRect(x: x, y: y, width: w, height: h)
+            
             updatePlaceholder()
         }
         get {
@@ -886,7 +881,7 @@ extension UITextView {
         }
     }
     
-    @objc private func updatePlaceholder() {
+    @objc public func updatePlaceholder() {
         placeholderLabel!.isHidden = text.count > 0
     }
 }
