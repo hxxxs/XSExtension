@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'XSExtension'
-  s.version          = '2.2.0'
+  s.version          = '2.3.0'
   s.summary          = 'Swift 方法拓展'
 
   s.homepage         = 'https://github.com/hxxxs'
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'XSExtension/Classes/**/*'
+  s.source_files = 'Sources/XSExtension/*'
   s.swift_version = '5.0'
 
 end

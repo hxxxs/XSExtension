@@ -20,6 +20,14 @@ it, simply add the following line to your Podfile:
 pod 'XSExtension'
 ```
 
+## Swift package Manager
+
+```
+dependencies: [
+    .package(url: "https://github.com/hxxxs/XSExtension.git", .upToNextMajor(from: "2.3.0"))
+]
+```
+
 ## Author
 
 Cedar, lychae@foxmail.com
