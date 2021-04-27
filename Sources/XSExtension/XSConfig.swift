@@ -6,6 +6,8 @@
 //  Copyright © 2018年 hxs. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
+
 import UIKit
 
 //  MARK: - 尺寸
@@ -49,3 +51,4 @@ public func radiansToDegrees(_ x : Float) -> Float {
     return (x * 180.0 / Float.pi)
 }
 
+#endif

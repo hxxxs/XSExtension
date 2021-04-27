@@ -5,6 +5,8 @@
 //  Created by LL on 2021/4/14.
 //  UIKit 链式编程属性设置
 
+#if os(iOS) || os(tvOS)
+
 import UIKit
 
 extension UILabel {
@@ -906,3 +908,5 @@ extension UITextView {
         placeholderLabel!.isHidden = text.count > 0
     }
 }
+
+#endif

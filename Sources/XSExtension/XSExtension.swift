@@ -6,6 +6,8 @@
 //  Copyright © 2018年 hxs. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
+
 import UIKit
 
 //  准备数据源
@@ -305,3 +307,5 @@ extension Bundle {
     }
 
 }
+
+#endif
