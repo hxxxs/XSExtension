@@ -29,7 +29,7 @@ extension UILabel {
                          textAlignment: textAlignment,
                          numberOfLines: numberOfLines)
         
-        _ = self.text(text)
+        self.text(text)
         sizeToFit()
     }
     
@@ -45,104 +45,104 @@ extension UILabel {
                                  textAlignment: NSTextAlignment = .left,
                                  numberOfLines: Int = 1) {
         
-        _ = self.font(font)
+        self.font(font)
             .textColor(textColor)
             .textAlignment(textAlignment)
             .numberOfLines(numberOfLines)
     }
     
-    public func text(_ text: String?) -> UILabel {
+    @discardableResult public func text(_ text: String?) -> UILabel {
         self.text = text
         return self
     }
     
-    public func font(_ font: UIFont) -> UILabel {
+    @discardableResult public func font(_ font: UIFont) -> UILabel {
         self.font = font
         return self
     }
     
-    public func textColor(_ textColor: UIColor) -> UILabel {
+    @discardableResult public func textColor(_ textColor: UIColor) -> UILabel {
         self.textColor = textColor
         return self
     }
     
-    public func shadowColor(_ shadowColor: UIColor) -> UILabel {
+    @discardableResult public func shadowColor(_ shadowColor: UIColor) -> UILabel {
         self.shadowColor = shadowColor
         return self
     }
     
-    public func shadowOffset(_ shadowOffset: CGSize) -> UILabel {
+    @discardableResult public func shadowOffset(_ shadowOffset: CGSize) -> UILabel {
         self.shadowOffset = shadowOffset
         return self
     }
     
-    public func textAlignment(_ textAlignment: NSTextAlignment) -> UILabel {
+    @discardableResult public func textAlignment(_ textAlignment: NSTextAlignment) -> UILabel {
         self.textAlignment = textAlignment
         return self
     }
     
-    public func lineBreakMode(_ lineBreakMode: NSLineBreakMode) -> UILabel {
+    @discardableResult public func lineBreakMode(_ lineBreakMode: NSLineBreakMode) -> UILabel {
         self.lineBreakMode = lineBreakMode
         return self
     }
     
-    public func attributedText(_ attributedText: NSAttributedString) -> UILabel {
+    @discardableResult public func attributedText(_ attributedText: NSAttributedString) -> UILabel {
         self.attributedText = attributedText
         return self
     }
     
-    public func highlightedTextColor(_ highlightedTextColor: UIColor) -> UILabel {
+    @discardableResult public func highlightedTextColor(_ highlightedTextColor: UIColor) -> UILabel {
         self.highlightedTextColor = highlightedTextColor
         return self
     }
     
-    public func isHighlighted(_ isHighlighted: Bool) -> UILabel {
+    @discardableResult public func isHighlighted(_ isHighlighted: Bool) -> UILabel {
         self.isHighlighted = isHighlighted
         return self
     }
     
-    public func isUserInteractionEnabled(_ isUserInteractionEnabled: Bool) -> UILabel {
+    @discardableResult public func isUserInteractionEnabled(_ isUserInteractionEnabled: Bool) -> UILabel {
         self.isUserInteractionEnabled = isUserInteractionEnabled
         return self
     }
     
-    public func isEnabled(_ isEnabled: Bool) -> UILabel {
+    @discardableResult public func isEnabled(_ isEnabled: Bool) -> UILabel {
         self.isEnabled = isEnabled
         return self
     }
     
-    public func numberOfLines(_ numberOfLines: Int) -> UILabel {
+    @discardableResult public func numberOfLines(_ numberOfLines: Int) -> UILabel {
         self.numberOfLines = numberOfLines
         return self
     }
     
-    public func adjustsFontSizeToFitWidth(_ adjustsFontSizeToFitWidth: Bool) -> UILabel {
+    @discardableResult public func adjustsFontSizeToFitWidth(_ adjustsFontSizeToFitWidth: Bool) -> UILabel {
         self.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
         return self
     }
     
-    public func baselineAdjustment(_ baselineAdjustment: UIBaselineAdjustment) -> UILabel {
+    @discardableResult public func baselineAdjustment(_ baselineAdjustment: UIBaselineAdjustment) -> UILabel {
         self.baselineAdjustment = baselineAdjustment
         return self
     }
     
-    public func minimumScaleFactor(_ minimumScaleFactor: CGFloat) -> UILabel {
+    @discardableResult public func minimumScaleFactor(_ minimumScaleFactor: CGFloat) -> UILabel {
         self.minimumScaleFactor = minimumScaleFactor
         return self
     }
     
     @available(iOS 9.0, *)
-    public func allowsDefaultTighteningForTruncation(_ allowsDefaultTighteningForTruncation: Bool) -> UILabel {
+    @discardableResult public func allowsDefaultTighteningForTruncation(_ allowsDefaultTighteningForTruncation: Bool) -> UILabel {
         self.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation
         return self
     }
     
-    public func lineBreakStrategy(_ lineBreakStrategy: NSParagraphStyle.LineBreakStrategy) -> UILabel {
+    @discardableResult public func lineBreakStrategy(_ lineBreakStrategy: NSParagraphStyle.LineBreakStrategy) -> UILabel {
         self.lineBreakStrategy = lineBreakStrategy
         return self
     }
     
-    public func preferredMaxLayoutWidth(_ preferredMaxLayoutWidth: CGFloat) -> UILabel {
+    @discardableResult public func preferredMaxLayoutWidth(_ preferredMaxLayoutWidth: CGFloat) -> UILabel {
         self.preferredMaxLayoutWidth = preferredMaxLayoutWidth
         return self
     }
@@ -183,7 +183,7 @@ extension UIButton {
                                      textAlignment: textAlignment,
                                      numberOfLines: numberOfLines)
         
-        _ = setTitle(title)
+        setTitle(title)
             .setTitleColor(titleColor)
             .setBackgroundImage(bgImage)
             .setImage(image)
@@ -217,107 +217,107 @@ extension UIButton {
         
         self.init(type: type)
         
-        _ = titleLabel?.numberOfLines(0)
+        titleLabel?.numberOfLines(0)
             .textAlignment(.center)
         
-        _ = setAttributedTitle(NSAttributedString(img: img,
-                                                  title: title,
-                                                  wh: wh,
-                                                  fontSize: fontSize,
-                                                  color: color, space: space))
+        setAttributedTitle(NSAttributedString(img: img,
+                                              title: title,
+                                              wh: wh,
+                                              fontSize: fontSize,
+                                              color: color, space: space))
         sizeToFit()
     }
     
-    public func setTitle(_ title: String?, _ state: UIControl.State = .normal) -> UIButton {
+    @discardableResult public func setTitle(_ title: String?, _ state: UIControl.State = .normal) -> UIButton {
         self.setTitle(title, for: state)
         return self
     }
     
-    public func setTitleColor(_ color: UIColor?, _ state: UIControl.State = .normal) -> UIButton {
+    @discardableResult public func setTitleColor(_ color: UIColor?, _ state: UIControl.State = .normal) -> UIButton {
         self.setTitleColor(color, for: state)
         return self
     }
     
-    public func setTitleShadowColor(_ color: UIColor?, _ state: UIControl.State = .normal) -> UIButton {
+    @discardableResult public func setTitleShadowColor(_ color: UIColor?, _ state: UIControl.State = .normal) -> UIButton {
         self.setTitleShadowColor(color, for: state)
         return self
     }
     
-    public func setAttributedTitle(_ title: NSAttributedString?, _ state: UIControl.State = .normal) -> UIButton {
+    @discardableResult public func setAttributedTitle(_ title: NSAttributedString?, _ state: UIControl.State = .normal) -> UIButton {
         self.setAttributedTitle(title, for: state)
         return self
     }
     
-    public func setImage(_ image: UIImage?, _ state: UIControl.State = .normal) -> UIButton {
+    @discardableResult public func setImage(_ image: UIImage?, _ state: UIControl.State = .normal) -> UIButton {
         self.setImage(image, for: state)
         return self
     }
     
-    public func setBackgroundImage(_ image: UIImage?, _ state: UIControl.State = .normal) -> UIButton {
+    @discardableResult public func setBackgroundImage(_ image: UIImage?, _ state: UIControl.State = .normal) -> UIButton {
         self.setBackgroundImage(image, for: state)
         return self
     }
     
     @available(iOS 13.0, *)
-    public func setPreferredSymbolConfiguration(_ configuration: UIImage.SymbolConfiguration, _ state: UIControl.State = .normal) -> UIButton {
+    @discardableResult public func setPreferredSymbolConfiguration(_ configuration: UIImage.SymbolConfiguration, _ state: UIControl.State = .normal) -> UIButton {
         self.setPreferredSymbolConfiguration(configuration, forImageIn: state)
         return self
     }
     
-    public func addTarget(_ target: Any?, _ action: Selector, _ event: UIControl.Event = .touchUpInside) -> UIButton {
+    @discardableResult public func addTarget(_ target: Any?, _ action: Selector, _ event: UIControl.Event = .touchUpInside) -> UIButton {
         self.addTarget(target, action: action, for: event)
         return self
     }
     
-    public func contentEdgeInsets(_ inset: UIEdgeInsets) -> UIButton {
+    @discardableResult public func contentEdgeInsets(_ inset: UIEdgeInsets) -> UIButton {
         self.contentEdgeInsets = inset
         return self
     }
     
-    public func titleEdgeInsets(_ inset: UIEdgeInsets) -> UIButton {
+    @discardableResult public func titleEdgeInsets(_ inset: UIEdgeInsets) -> UIButton {
         self.titleEdgeInsets = inset
         return self
     }
     
-    public func imageEdgeInsets(_ inset: UIEdgeInsets) -> UIButton {
+    @discardableResult public func imageEdgeInsets(_ inset: UIEdgeInsets) -> UIButton {
         self.imageEdgeInsets = inset
         return self
     }
     
-    public func adjustsImageWhenHighlighted(_ isAdjusts: Bool) -> UIButton {
+    @discardableResult public func adjustsImageWhenHighlighted(_ isAdjusts: Bool) -> UIButton {
         self.adjustsImageWhenHighlighted = isAdjusts
         return self
     }
     
-    public func adjustsImageWhenDisabled(_ isAdjusts: Bool) -> UIButton {
+    @discardableResult public func adjustsImageWhenDisabled(_ isAdjusts: Bool) -> UIButton {
         self.adjustsImageWhenDisabled = isAdjusts
         return self
     }
     
-    public func showsTouchWhenHighlighted(_ isShows: Bool) -> UIButton {
+    @discardableResult public func showsTouchWhenHighlighted(_ isShows: Bool) -> UIButton {
         self.showsTouchWhenHighlighted = isShows
         return self
     }
     
-    public func tintColor(_ color: UIColor) -> UIButton {
+    @discardableResult public func tintColor(_ color: UIColor) -> UIButton {
         self.tintColor = color
         return self
     }
     
     @available(iOS 14.0, *)
-    public func role(_ role: UIButton.Role) -> UIButton {
+    @discardableResult public func role(_ role: UIButton.Role) -> UIButton {
         self.role = role
         return self
     }
     
     @available(iOS 13.4, *)
-    public func isPointerInteractionEnabled(_ isEnabled: Bool) -> UIButton {
+    @discardableResult public func isPointerInteractionEnabled(_ isEnabled: Bool) -> UIButton {
         self.isPointerInteractionEnabled = isEnabled
         return self
     }
     
     @available(iOS 14.0, *)
-    public func menu(_ menu: UIMenu) -> UIButton {
+    @discardableResult public func menu(_ menu: UIMenu) -> UIButton {
         self.menu = menu
         return self
     }
