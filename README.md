@@ -24,7 +24,7 @@ pod 'XSExtension'
 
 ```
 dependencies: [
-    .package(url: "https://github.com/hxxxs/XSExtension.git", .upToNextMajor(from: "2.3.0"))
+    .package(url: "https://github.com/hxxxs/XSExtension.git", .upToNextMajor(from: "3.0.1"))
 ]
 ```
 
