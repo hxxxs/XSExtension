@@ -658,11 +658,11 @@ extension UIViewController {
     }
     
     /// 通过storyboard初始化视图控制器
-    open class func vcFrom(storyboard name: String = "\(classForCoder())",
-                           identifier: String = "\(classForCoder())",
+    open class func vcFrom(storyboard name: String? = nil,
+                           identifier: String? = nil,
                            bundle: Bundle? = nil) -> Self {
-        let sb = UIStoryboard(name: name, bundle: bundle)
-        return sb.instantiateViewController(withIdentifier: identifier) as! Self
+        let sb = UIStoryboard(name: name ?? "\(classForCoder())", bundle: bundle)
+        return sb.instantiateViewController(withIdentifier: identifier ?? "\(classForCoder())") as! Self
     }
 }
 
