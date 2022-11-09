@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'XSExtension'
-  s.version          = '3.0.2'
+  s.version          = '3.0.3'
   s.summary          = 'Swift 方法拓展'
 
   s.homepage         = 'https://github.com/hxxxs'

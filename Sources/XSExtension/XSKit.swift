@@ -606,6 +606,12 @@ extension CGFloat {
     }
 }
 
+extension UITableViewHeaderFooterView {
+    open class var identifier: String {
+        "\(classForCoder())"
+    }
+}
+
 extension UITableViewCell {
     
     open class var identifier: String {
@@ -677,9 +683,9 @@ extension UIView {
     
     /// 通过xib初始化视图
     open class func view(from nibName: String? = nil,
-                         bundle: Bundle? = nil) -> UIView {
+                         bundle: Bundle? = nil) -> Self {
         let nib = UINib(nibName: nibName ?? "\(classForCoder())", bundle: bundle)
-        return nib.instantiate(withOwner: nil, options: nil).last as! UIView
+        return nib.instantiate(withOwner: nil, options: nil).last as! Self
     }
     
     // MARK: - Properties
