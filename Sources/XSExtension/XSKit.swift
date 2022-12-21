@@ -18,7 +18,8 @@ extension UILabel {
     ///   - textColor: 文字颜色
     ///   - textAlignment: 文字对齐方式
     ///   - numberOfLines: 行数
-    public convenience init(text: String? = nil, font: UIFont = .systemFont(ofSize: 16),
+    public convenience init(text: String? = nil,
+                            font: UIFont = .systemFont(ofSize: 16),
                             textColor: UIColor = .darkGray,
                             textAlignment: NSTextAlignment = .left,
                             numberOfLines: Int = 1) {
@@ -137,6 +138,7 @@ extension UILabel {
         return self
     }
     
+    @available(iOS 14.0, *)
     @discardableResult public func lineBreakStrategy(_ lineBreakStrategy: NSParagraphStyle.LineBreakStrategy) -> UILabel {
         self.lineBreakStrategy = lineBreakStrategy
         return self
@@ -726,7 +728,7 @@ extension UIView {
         }
     }
     
-    public var x : CGFloat {
+    public var x: CGFloat {
         set {
             frame.origin.x = newValue
         }
@@ -735,7 +737,7 @@ extension UIView {
         }
     }
     
-    public var y : CGFloat {
+    public var y: CGFloat {
         set {
             frame.origin.y = newValue
         }
@@ -744,7 +746,7 @@ extension UIView {
         }
     }
     
-    public var width : CGFloat {
+    public var width: CGFloat {
         set {
             frame.size.width = newValue
         }
@@ -753,7 +755,7 @@ extension UIView {
         }
     }
     
-    public var height : CGFloat {
+    public var height: CGFloat {
         set {
             frame.size.height = newValue
         }
@@ -762,7 +764,7 @@ extension UIView {
         }
     }
     
-    public var centerX : CGFloat {
+    public var centerX: CGFloat {
         set {
             center.x = newValue
         }
@@ -771,7 +773,7 @@ extension UIView {
         }
     }
     
-    public var centerY : CGFloat {
+    public var centerY: CGFloat {
         set {
             center.y = newValue
         }
@@ -780,7 +782,7 @@ extension UIView {
         }
     }
     
-    public var size : CGSize {
+    public var size: CGSize {
         set {
             frame.size = newValue
         }
@@ -789,7 +791,7 @@ extension UIView {
         }
     }
     
-    public var origin : CGPoint {
+    public var origin: CGPoint {
         set {
             frame.origin = newValue
         }
